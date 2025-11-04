@@ -1,19 +1,24 @@
 {
     "name": "TypeScript + PostgreSQL Dev Environment",
-    "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:20-bookworm",
     
     "features": {
-      "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+      "ghcr.io/devcontainers/features/docker-in-docker:2": {
+        "moby": false,
+        "dockerDashComposeVersion": "v2"
+      }
     },
     
     "forwardPorts": [3000, 5432],
     "portsAttributes": {
       "3000": {
         "label": "API Server",
-        "onAutoForward": "openBrowser"
+        "onAutoForward": "notify",
+        "visibility": "public"
       },
       "5432": {
-        "label": "PostgreSQL"
+        "label": "PostgreSQL",
+        "onAutoForward": "silent"
       }
     },
     
@@ -32,6 +37,5 @@
       }
     },
     
-    "postCreateCommand": "docker-compose up -d && npm install && npm run migrate",
-    "postStartCommand": "npm run dev"
+    "postCreateCommand": "docker compose up -d && sleep 10 && npm install && npm run migrate"
   }
