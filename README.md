@@ -69,7 +69,7 @@ Public endpoint for user authentication.
 ```bash
 curl -X POST http://localhost:3000/login \
   -H "Content-Type: application/json" \
-  -d '{"username": "user1", "password": "password1"}'
+  -d '{"username": "XXX", "password": "XXX"}'
 ```
 
 **Response:**
@@ -98,25 +98,6 @@ curl http://localhost:3000/cart \
 ```
 
 The total is the sum of all non-free line items in the active cart.
-
-## Testing the API
-
-### 1. Login as user1
-
-```bash
-curl -X POST http://localhost:3000/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "user1", "password": "password1"}'
-```
-
-### 2. Copy the token from the response
-
-### 3. Get the active cart
-
-```bash
-curl http://localhost:3000/cart \
-  -H "x-api-token: Bearer YOUR_TOKEN_HERE"
-```
 
 ## Database Schema
 
@@ -180,10 +161,3 @@ migrations/
 - The JWT secret should be changed in production
 - Active carts have `completed_at` set to NULL
 - The cart total only includes line items where `is_free = false`
-
-
-```
-curl -X POST http://localhost:3000/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "user1", "password": "password1"}'
-```
